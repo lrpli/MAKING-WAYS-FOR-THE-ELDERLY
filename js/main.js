@@ -1,143 +1,104 @@
 /* ============================================
-   Making Ways for the Elderly - JavaScript
+   Making Ways for the Elderly — JavaScript
+   Scroll reveals, mobile menu, navbar effects
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   // ===== Mobile Menu Toggle =====
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
 
-  if (menuToggle && navLinks) {
-    const menuIcon = menuToggle.querySelector('.menu-icon');
-    const closeIcon = menuToggle.querySelector('.close-icon');
-
+  if (menuToggle && menu) {
     menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      if (menuIcon) menuIcon.style.display = isOpen ? 'none' : 'block';
-      if (closeIcon) closeIcon.style.display = isOpen ? 'block' : 'none';
+      const isOpen = menu.classList.toggle('open');
+      menuToggle.classList.toggle('open', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
+    // Close menu when clicking a nav link
+    menu.querySelectorAll('.menu-link').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        if (menuIcon) menuIcon.style.display = 'block';
-        if (closeIcon) closeIcon.style.display = 'none';
+        menu.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
-  }
 
-  // ===== Navbar scroll effect =====
-  const navbar = document.getElementById('navbar');
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 2px 20px rgba(61,44,46,.1)';
-      } else {
-        navbar.style.boxShadow = 'none';
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+        menu.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
       }
     });
   }
 
-  // ===== Counter Animation =====
-  const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-  if (statNumbers.length > 0) {
-    const animateCounter = (el) => {
-      const target = parseInt(el.getAttribute('data-target'));
-      const duration = 2000;
-      const step = target / (duration / 16);
-      let current = 0;
-
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          el.textContent = target;
-          clearInterval(timer);
-        } else {
-          el.textContent = Math.floor(current);
-        }
-      }, 16);
+  // ===== Navbar Scroll Effect =====
+  const topbar = document.querySelector('.topbar');
+  if (topbar) {
+    let lastScroll = 0;
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 20) {
+        topbar.classList.add('scrolled');
+      } else {
+        topbar.classList.remove('scrolled');
+      }
+      lastScroll = scrollY;
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    statNumbers.forEach(el => observer.observe(el));
+    // Use passive listener for performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run once on load
+    handleScroll();
   }
 
   // ===== Scroll Reveal Animation =====
-  const revealElements = document.querySelectorAll('.card, .mv-card, .service-card, .impact-card, .method-card, .news-card, .value-item, .timeline-item, .info-card, .vol-benefit-card');
+  const revealElements = document.querySelectorAll('.reveal');
 
-  if (revealElements.length > 0) {
-    // Add initial styles
-    revealElements.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-
+  if (revealElements.length > 0 && 'IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Stagger the animations
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, index * 100);
+          entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
 
     revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    // Fallback: show all elements immediately
+    revealElements.forEach(el => el.classList.add('visible'));
   }
 
-  // ===== Form Handling =====
-  const forms = document.querySelectorAll('form[data-form]');
-  forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // Simple validation
-      const required = form.querySelectorAll('[required]');
-      let valid = true;
-
-      required.forEach(field => {
-        if (!field.value.trim()) {
-          field.style.borderColor = '#e74c3c';
-          valid = false;
-        } else {
-          field.style.borderColor = '';
-        }
-      });
-
-      if (valid) {
-        // Show success message
-        const successEl = form.parentElement.querySelector('.form-success');
-        if (successEl) {
-          form.style.display = 'none';
-          successEl.classList.add('show');
-        }
-        form.reset();
-      }
-    });
-  });
-
-  // ===== Active nav link highlight =====
+  // ===== Active Nav Link Highlight =====
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(link => {
+  document.querySelectorAll('.menu-link').forEach(link => {
     link.classList.remove('active');
     const href = link.getAttribute('href');
     if (href === currentPage || (currentPage === '' && href === 'index.html')) {
       link.classList.add('active');
     }
   });
+
+  // ===== Smooth hover effects for cards =====
+  const cards = document.querySelectorAll('.link-card, .info-card, .contact-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.willChange = 'transform';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.willChange = 'auto';
+    });
+  });
+
+  // ===== Add loaded class for initial animations =====
+  document.body.classList.add('loaded');
 
 });

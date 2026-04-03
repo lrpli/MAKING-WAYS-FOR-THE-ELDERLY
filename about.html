@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn about MAKING WAYS FOR THE ELDERLY, including mission, values, and leadership.">
-  <title>MAKING WAYS FOR THE ELDERLY | About</title>
+  <meta name="description" content="Learn about Making Ways for the Elderly — our mission, core values, and leadership in Macon, Georgia.">
+  <title>Making Ways for the Elderly | About</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="topbar">
     <div class="wrapper topbar-content">
-      <a class="brand" href="index.html">MAKING WAYS FOR THE ELDERLY</a>
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </span>
+        Making Ways for the Elderly
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
       <nav class="menu" aria-label="Main navigation">
         <a class="menu-link" href="index.html">Home</a>
         <a class="menu-link active" href="about.html">About</a>
@@ -22,14 +37,15 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="page-hero">
       <div class="wrapper hero-grid">
         <article class="card-surface hero-main reveal">
           <p class="hero-kicker">About Our Work</p>
           <h1>Building Reliable Support for Older Adults</h1>
           <p>
-            MAKING WAYS FOR THE ELDERLY is dedicated to helping senior community members access support systems,
-            maintain dignity, and remain connected to the people and places they value most.
+            Making Ways for the Elderly is dedicated to helping senior community members access
+            support systems, maintain dignity, and remain connected to the people and places they value most.
           </p>
           <div class="ein-pill">
             <span class="pill-dot" aria-hidden="true"></span>
@@ -57,39 +73,68 @@
       </div>
     </section>
 
+    <!-- MISSION -->
     <section class="section">
       <div class="wrapper">
-        <h2 class="section-title">Mission</h2>
-        <p class="section-intro">
-          Our mission is to improve quality of life for elderly individuals through compassionate service,
-          responsive support, and meaningful community engagement in Macon, Georgia.
-        </p>
+        <div class="mission-block reveal">
+          <blockquote>
+            Our mission is to improve quality of life for elderly individuals through compassionate service,
+            responsive support, and meaningful community engagement in Macon, Georgia.
+          </blockquote>
+        </div>
       </div>
     </section>
 
+    <!-- VALUES -->
     <section class="section section-soft">
       <div class="wrapper">
-        <h2 class="section-title">Our Values</h2>
+        <div class="section-header">
+          <h2 class="section-title section-title-decorated">Our Values</h2>
+          <p class="section-intro">
+            Everything we do is guided by three foundational principles that shape our service to the community.
+          </p>
+        </div>
         <div class="grid-3">
-          <article class="info-card reveal">
+          <article class="info-card value-card reveal">
+            <div class="value-icon value-icon-compassion">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
             <h3>Compassion</h3>
-            <p>We lead with empathy and respect in every interaction.</p>
+            <p>We lead with empathy and respect in every interaction, ensuring every senior feels valued and heard.</p>
           </article>
-          <article class="info-card reveal delay-1">
+          <article class="info-card value-card reveal delay-1">
+            <div class="value-icon value-icon-consistency">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
             <h3>Consistency</h3>
-            <p>We show up reliably for the people and families we serve.</p>
+            <p>We show up reliably for the people and families we serve, building trust through dependable action.</p>
           </article>
-          <article class="info-card reveal delay-2">
+          <article class="info-card value-card reveal delay-2">
+            <div class="value-icon value-icon-integrity">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
             <h3>Integrity</h3>
-            <p>We honor transparency and accountability in our work.</p>
+            <p>We honor transparency and accountability in our work, maintaining the highest ethical standards.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- LEADERSHIP -->
     <section class="section">
       <div class="wrapper">
-        <h2 class="section-title">Leadership</h2>
+        <div class="section-header">
+          <h2 class="section-title section-title-decorated">Leadership</h2>
+          <p class="section-intro">
+            Our organization is led by dedicated individuals committed to serving the elderly community.
+          </p>
+        </div>
         <div class="grid-2">
           <article class="info-card reveal">
             <h3>Principal Officer</h3>
@@ -101,20 +146,54 @@
             </p>
           </article>
           <article class="info-card reveal delay-1">
-            <h3>Organization Name</h3>
-            <p>MAKING WAYS FOR THE ELDERLY</p>
-            <p>Doing Business As: MAKING WAYS FOR THE ELDERLY</p>
+            <h3>Organization</h3>
+            <p><strong>Making Ways for the Elderly</strong></p>
+            <p>A public-benefit nonprofit dedicated to supporting older adults in the Macon, Georgia community.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-accent">
+      <div class="wrapper">
+        <div class="highlight-box reveal">
+          <h2>Want to Learn More?</h2>
+          <p>
+            We are always open to questions, partnerships, and community engagement. Reach out today.
+          </p>
+          <a href="mailto:info@makingways.us" class="email-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+            info@makingways.us
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrapper footer-content">
-      <p>&copy; 2026 MAKING WAYS FOR THE ELDERLY</p>
-      <p>EIN: 99-5096901</p>
+    <div class="wrapper">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">Making Ways for the Elderly</p>
+          <p class="footer-tagline">Supporting older adults in Macon, Georgia through compassion, community, and care.</p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="organization.html">Organization</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Making Ways for the Elderly</p>
+        <p class="footer-email"><a href="mailto:info@makingways.us">info@makingways.us</a></p>
+        <p>EIN: 99-5096901</p>
+      </div>
     </div>
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
